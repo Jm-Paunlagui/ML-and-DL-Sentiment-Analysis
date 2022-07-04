@@ -1,0 +1,54 @@
+Bidirectional LSTM Glove
+Accuracy Score:
+ 0.8986
+
+Classification Report:
+               precision    recall  f1-score   support
+
+           0       0.89      0.91      0.90      5000
+           1       0.90      0.89      0.90      5000
+
+    accuracy                           0.90     10000
+   macro avg       0.90      0.90      0.90     10000
+weighted avg       0.90      0.90      0.90     10000
+
+
+Confusion Matrix:
+ [[4532  468]
+ [ 546 4454]]
+
+ Accuracy Score:
+ 0.8892
+
+Classification Report:
+               precision    recall  f1-score   support
+
+           0       0.89      0.89      0.89      5000
+           1       0.89      0.89      0.89      5000
+
+    accuracy                           0.89     10000
+   macro avg       0.89      0.89      0.89     10000
+weighted avg       0.89      0.89      0.89     10000
+
+
+Confusion Matrix:
+ [[4447  553]
+ [ 555 4445]]
+
+Accuracy Score:
+ 0.8966
+
+Classification Report:
+               precision    recall  f1-score   support
+
+           0       0.88      0.92      0.90      5000
+           1       0.92      0.87      0.89      5000
+
+    accuracy                           0.90     10000
+   macro avg       0.90      0.90      0.90     10000
+weighted avg       0.90      0.90      0.90     10000
+
+
+Confusion Matrix:
+ [[4604  396]
+ [ 638 4362]]

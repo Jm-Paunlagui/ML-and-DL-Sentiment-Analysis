@@ -1,0 +1,5 @@
+*.tsv
+*.h5
+/bidi_lstm_4/
+/bidi_lstm_5/
+/bidi_lstm_6/

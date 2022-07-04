@@ -1,0 +1,78 @@
+Bidirectional LSTM
+Accuracy Score:
+ 0.8721
+Classification Report:
+               precision    recall  f1-score   support
+
+           0       0.87      0.87      0.87      5000
+           1       0.87      0.87      0.87      5000
+
+    accuracy                           0.87     10000
+   macro avg       0.87      0.87      0.87     10000
+weighted avg       0.87      0.87      0.87     10000
+
+Confusion Matrix:
+ [[4355  645]
+ [ 634 4366]]
+
+---------------------------------------------------------------------------
+Bidirectional LSTM Glove - glove-wiki-gigaword-300
+Accuracy Score:
+ 0.898
+
+Classification Report:
+               precision    recall  f1-score   support
+
+           0       0.90      0.90      0.90      5000
+           1       0.90      0.90      0.90      5000
+
+    accuracy                           0.90     10000
+   macro avg       0.90      0.90      0.90     10000
+weighted avg       0.90      0.90      0.90     10000
+
+
+Confusion Matrix:
+ [[4477  523]
+ [ 497 4503]]
+
+Bidirectional LSTM Glove - glove-twitter-200glove-twitter-200
+ Accuracy Score:
+ 0.8997
+
+Classification Report:
+               precision    recall  f1-score   support
+
+           0       0.90      0.90      0.90      5000
+           1       0.90      0.90      0.90      5000
+
+    accuracy                           0.90     10000
+   macro avg       0.90      0.90      0.90     10000
+weighted avg       0.90      0.90      0.90     10000
+
+
+Confusion Matrix:
+ [[4477  523]
+ [ 480 4520]]
+---------------------------------------------------------------------------
+
+Bidirectional LSTM Word2vec
+Accuracy Score:
+ 0.8955
+Classification Report:
+               precision    recall  f1-score   support
+
+           0       0.88      0.91      0.90      5000
+           1       0.91      0.88      0.89      5000
+
+    accuracy                           0.90     10000
+   macro avg       0.90      0.90      0.90     10000
+weighted avg       0.90      0.90      0.90     10000
+
+Confusion Matrix:
+ [[4566  434]
+ [ 611 4389]]
+
+
+
+
+
