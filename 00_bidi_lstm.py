@@ -15,11 +15,11 @@ from nltk.stem.wordnet import WordNetLemmatizer
 from sklearn.model_selection import train_test_split
 from nltk.tokenize import word_tokenize
 
-# data = pd.read_csv('sentiment_tweets3.csv', engine='python')
+data = pd.read_csv('sentiment_tweets3.csv', engine='python')
 # start
 
 # loading the dataset with pandas
-data = pd.read_csv('dataset/imdb.csv', engine='python')
+#data = pd.read_csv('dataset/imdb.csv', engine='python')
 
 print(data.head(10))
 
@@ -73,7 +73,7 @@ print("y_test: {}".format(y_test.shape))
 # Tokenize, text to sequences, pad sequences
 max_length = 200
 vocab_size = 20000
-tokenizer = Tokenizer(num_words=vocab_size, oov_token="<unk>")
+tokenizer = Tokenizer(num_words=vocab_size, oov_token="<unk>", filters='!"@#$%&()*+,-./:;<=>?@[\\]^_`{|}~\t\n')
 tokenizer.fit_on_texts(X_train)
 word_index = tokenizer.word_index
 print(len(tokenizer.word_index))
