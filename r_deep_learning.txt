@@ -15,6 +15,38 @@ Confusion Matrix:
  [[4355  645]
  [ 634 4366]]
 
+Classification Report:
+               precision    recall  f1-score   support
+
+           0       0.91      0.88      0.89      5000
+           1       0.89      0.91      0.90      5000
+
+    accuracy                           0.90     10000
+   macro avg       0.90      0.90      0.90     10000
+weighted avg       0.90      0.90      0.90     10000
+
+Confusion Matrix:
+ [[4410  590]
+ [ 451 4549]]
+Accuracy Score:
+ 0.8959
+
+ Classification Report:
+               precision    recall  f1-score   support
+
+           0       0.92      0.88      0.90      2500
+           1       0.89      0.92      0.91      2500
+
+    accuracy                           0.90      5000
+   macro avg       0.90      0.90      0.90      5000
+weighted avg       0.90      0.90      0.90      5000
+
+Confusion Matrix:
+ [[2211  289]
+ [ 190 2310]]
+Accuracy Score:
+ 0.8959
+
 ---------------------------------------------------------------------------
 Bidirectional LSTM Glove - glove-wiki-gigaword-300
 Accuracy Score:
@@ -71,3 +103,20 @@ weighted avg       0.90      0.90      0.90     10000
 Confusion Matrix:
  [[4566  434]
  [ 611 4389]]
+ 
+ -----------------------
+ Classification Report: 
+ Accuracy Score: 
+ 0.8882
+               precision    recall  f1-score   support
+
+           0       0.89      0.88      0.89      2500
+           1       0.89      0.89      0.89      2500
+
+    accuracy                           0.89      5000
+   macro avg       0.89      0.89      0.89      5000
+weighted avg       0.89      0.89      0.89      5000
+
+Confusion Matrix: 
+ [[2212  288]
+ [ 271 2229]]

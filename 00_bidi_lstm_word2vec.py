@@ -51,6 +51,29 @@ data["review"] = data["review"].apply(clean_text)
 
 print('clean text', data.head())
 
+# Get list of stopwords from nltk
+stopword_list = stopwords.words('english')
+nltk.download("stopwords")
+nltk.download("punkt")
+
+
+#
+#
+# Tokenize and Remove StopWords
+def remove_stopwords(text):
+    tokens = [token.strip() for token in word_tokenize(text)]
+    filtered_tokens = [token for token in tokens if token.lower() not in stopword_list]
+    filtered_text = ' '.join(filtered_tokens)
+
+    return filtered_text
+
+
+#
+#
+# Applying the function to remove stopwords
+data['review'] = data['review'].apply(remove_stopwords)
+print(data.head(10))
+
 # Tokenize and Remove StopWords
 # def remove_stopwords(text):
 #     tokens = [token.strip() for token in word_tokenize(text)]
@@ -68,9 +91,9 @@ print('removed stop words', data.head())
 X = data['review']
 y = data['sentiment']
 
-X_main, X_test, y_main, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y, shuffle=True)
+X_main, X_test, y_main, y_test = train_test_split(X, y, test_size=0.1, random_state=42, stratify=y, shuffle=True)
 
-X_train, X_val, y_train, y_val = train_test_split(X_main, y_main, test_size=0.25, random_state=42, stratify=y_main,
+X_train, X_val, y_train, y_val = train_test_split(X_main, y_main, test_size=0.11111111, random_state=42, stratify=y_main,
                                                   shuffle=True)
 
 # word2vec

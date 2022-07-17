@@ -7,9 +7,8 @@ from keras.saving.save import load_model
 from keras.utils import pad_sequences
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 
-tokenizer = Tokenizer()
-model = load_model('99Acc3.h5')
-
+tokenizer = Tokenizer(oov_token="<OOV>")
+# Use the model to predict a review
 fake_reviews = ['I love this phone', 'I hate spaghetti',
                 'Everything was cold',
                 'Everything was hot exactly as I wanted',
@@ -18,10 +17,15 @@ fake_reviews = ['I love this phone', 'I hate spaghetti',
                 'they gave us free chocolate cake',
                 'not sure about the wilted flowers on the table',
                 'only works when I stand on tippy toes',
-                'does not work when I stand on my head']
+                'does not work when I stand on my head',
+                'they gave us free chocolate cake and did not charge us']
+
+model = load_model('99Acc3.h5')
 
 print(fake_reviews)
-max_length = 100
+tokenizer.fit_on_texts(fake_reviews)
+max_length = 50
+padding_type = 'post'
 # Create the sequences
 padding_type = 'post'
 sample_sequences = tokenizer.texts_to_sequences(fake_reviews)
@@ -36,3 +40,8 @@ for x in range(len(fake_reviews)):
     print(fake_reviews[x])
     print(classes[x])
     print('\n')
+
+# Try adding reviews of your own
+# Add some negative words (such as "not") to the good reviews and see what happens
+# For example:
+# they gave us free chocolate cake and did not charge us

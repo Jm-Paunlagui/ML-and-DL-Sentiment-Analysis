@@ -6,7 +6,7 @@
       <excludeFolder url="file://$MODULE_DIR$/bidi_lstm_5/assets" />
       <excludeFolder url="file://$MODULE_DIR$/bidi_lstm_6/assets" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="Python 3.10 (Tensorflow)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>

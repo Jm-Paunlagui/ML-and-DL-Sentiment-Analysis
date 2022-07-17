@@ -15,14 +15,11 @@ from nltk.stem.porter import PorterStemmer
 
 # Machine Learning
 from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.linear_model import SGDClassifier, PassiveAggressiveClassifier, Perceptron, RidgeClassifier, \
-    RidgeClassifierCV, SGDOneClassSVM
 from sklearn.model_selection import train_test_split
-from fast_ml.model_development import train_valid_test_split
 from nltk.tokenize.regexp import RegexpTokenizer
 
 from sklearn.linear_model._logistic import LogisticRegression, LogisticRegressionCV
-from sklearn.naive_bayes import BernoulliNB, MultinomialNB, GaussianNB
+from sklearn.naive_bayes import BernoulliNB, MultinomialNB, GaussianNB, ComplementNB, CategoricalNB
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 
 nltk.download("stopwords")
@@ -102,13 +99,13 @@ y = data['sentiment']
 
 token = RegexpTokenizer(r'[^a-zA-Z0-9\s]+')
 # Vectorizing the text
-vect = CountVectorizer(ngram_range=(1, 1), max_features=20000)
+vect = CountVectorizer(ngram_range=(1, 4))
 X = vect.fit_transform(X)
 print(X)
 
-X_main, X_test, y_main, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y, shuffle=True)
+X_main, X_test, y_main, y_test = train_test_split(X, y, test_size=0.1, random_state=42, stratify=y, shuffle=True)
 
-X_train, X_val, y_train, y_val = train_test_split(X_main, y_main, test_size=0.25, random_state=42, stratify=y_main,
+X_train, X_val, y_train, y_val = train_test_split(X_main, y_main, test_size=0.11111111, random_state=42, stratify=y_main,
                                                   shuffle=True)
 
 print("X_main shape: {}".format(X_train.shape))
@@ -139,8 +136,11 @@ def classifier_testing(clf, X_train, X_val, y_train, y_val):
     print("Confusion Matrix:\n", conf_mtx, "\n")
 
 
-# GNB = GaussianNB()
-# classifier_testing(GNB, X_train, X_test, y_train, y_test)
+# Categorical Naive Bayes Classifier
+ComplementNB = ComplementNB()
+print('ComplementNB')
+classifier_testing(ComplementNB, X_train, X_val, y_train, y_val)
+print('---------------------------------------------------------------------------')
 
 BNB = BernoulliNB(alpha=0, binarize=0.0, fit_prior=True, class_prior=None)
 print('BernoulliNB')
@@ -157,27 +157,7 @@ print('LogisticRegression')
 classifier_testing(LR, X_train, X_val, y_train, y_val)
 print('---------------------------------------------------------------------------')
 
-SGD = SGDClassifier(random_state=42, shuffle=True, max_iter=5)
-print('SGDClassifier')
-classifier_testing(SGD, X_train, X_val, y_train, y_val)
-print('---------------------------------------------------------------------------')
-
-SVM = SGDOneClassSVM(random_state=42, max_iter=5, shuffle=True)
-print('SGDOneClassSVM')
-classifier_testing(SVM, X_train, X_val, y_train, y_val)
-print('---------------------------------------------------------------------------')
-
-PAC = PassiveAggressiveClassifier(random_state=42, shuffle=True, max_iter=5)
-print('PassiveAggressiveClassifier')
-classifier_testing(SGD, X_train, X_val, y_train, y_val)
-print('---------------------------------------------------------------------------')
-
-PCT = Perceptron(random_state=42, shuffle=True, max_iter=5)
-print('Perceptron')
-classifier_testing(PCT, X_train, X_val, y_train, y_val)
-print('---------------------------------------------------------------------------')
-
-RC = RidgeClassifier(random_state=42, max_iter=5)
-print('RidgeClassifier')
-classifier_testing(RC, X_train, X_val, y_train, y_val)
+LogisticRegressionCV = LogisticRegressionCV(random_state=42, max_iter=5)
+print('LogisticRegressionCV')
+classifier_testing(LogisticRegressionCV, X_train, X_val, y_train, y_val)
 print('---------------------------------------------------------------------------')

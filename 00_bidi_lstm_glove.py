@@ -50,7 +50,6 @@ plt.xticks([])
 plt.xlim(-0.5, 2)
 plt.legend()
 plt.savefig('images/00_bnb_mnb_lr_Classes_distribution_in_the_train data.png')
-plt.show();
 REPLACE_WITH_SPACE = re.compile(r'[^A-Za-z\s]')
 
 
@@ -71,6 +70,7 @@ def clean_text(text):
 data["review"] = data["review"].apply(clean_text)
 
 print('clean text', data.head())
+
 
 # Tokenize and Remove StopWords
 def remove_stopwords(text):
@@ -114,9 +114,9 @@ print(meanu)
 
 X = data['review']
 y = data['sentiment']
-X_main, X_test, y_main, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y, shuffle=True)
+X_main, X_test, y_main, y_test = train_test_split(X, y, test_size=0.1, random_state=42, stratify=y, shuffle=True)
 
-X_train, X_val, y_train, y_val = train_test_split(X_main, y_main, test_size=0.25, random_state=42, stratify=y_main,
+X_train, X_val, y_train, y_val = train_test_split(X_main, y_main, test_size=0.11111111, random_state=42, stratify=y_main,
                                                   shuffle=True)
 
 print("X_train shape: {}".format(X_train.shape))
@@ -126,8 +126,8 @@ print("y_val shape: {}".format(y_val.shape))
 print("X_test: {}".format(X_test.shape))
 print("y_test: {}".format(y_test.shape))
 
-vocab_size = 20000
-tokenizer = Tokenizer(oov_token="<OOV>", num_words=vocab_size)
+
+tokenizer = Tokenizer(oov_token="<OOV>")
 
 tokenizer.fit_on_texts(X_train)
 
@@ -147,11 +147,11 @@ X_test = pad_sequences(X_test, maxlen=max_len, padding='post')
 
 
 vector_size = 200
-gensim_weight_matrix = np.zeros((vocab_size, vector_size))
+gensim_weight_matrix = np.zeros((len(tokenizer.word_index), vector_size))
 print('gensim_weight_matrix: ', gensim_weight_matrix.shape)
 
 for word, index in tokenizer.word_index.items():
-    if index < vocab_size:
+    if index < len(tokenizer.word_index):
         if word in glove_gensim:
             gensim_weight_matrix[index] = glove_gensim[word]
         else:
@@ -164,7 +164,7 @@ for word, index in tokenizer.word_index.items():
 
 
 model = Sequential([
-    tf.keras.layers.Embedding(vocab_size, vector_size, name="embedding", weights=[gensim_weight_matrix], trainable=False),
+    tf.keras.layers.Embedding(len(tokenizer.word_index), vector_size, name="embedding", weights=[gensim_weight_matrix], trainable=False),
     Bidirectional(LSTM(64, return_sequences=True, dropout=0.2)),
     GlobalMaxPool1D(),
     Dense(20, activation="relu"),
@@ -199,7 +199,7 @@ reverse_word_index = dict([(value, key) for (key, value) in word_index.items()])
 out_v = io.open('vectors1.tsv', 'w', encoding='utf-8')
 out_m = io.open('metadata1.tsv', 'w', encoding='utf-8')
 
-for word_num in range(1, vocab_size - 1):
+for word_num in range(1, len(tokenizer.word_index) - 1):
     word = reverse_word_index[word_num]
     embeddings = weights[word_num]
     out_m.write(word + "\n")
